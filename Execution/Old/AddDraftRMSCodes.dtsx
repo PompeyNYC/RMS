@@ -1,0 +1,845 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/9/2022 10:39:50 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLEDMDEV"
+  DTS:CreatorName="RACAP\sqladmin_DEV"
+  DTS:DTSID="{9EE0503D-D578-4E8C-B7EE-B0ECA522578C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="AddDraftRMSCodes"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{2DFDEC8D-0E6A-4477-A36F-A2C852B2B34B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Exception Log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{94A3AFBB-970B-4E51-B384-7976D577F641}"
+      DTS:ObjectName="Exception Log">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ExceptionFolder]+ @[User::ExceptionFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\DataFeeds\RMS\Exceptions\AddDraftRMSCodesErrors.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TimeScape Raw Database]"
+      DTS:CreationName="TimeScape Database"
+      DTS:DTSID="{506EE408-E222-4263-9CCB-50EE73B162BC}"
+      DTS:ObjectName="TimeScape Raw Database">
+      <DTS:PropertyExpression
+        DTS:Name="DatabaseName">@[User::TimeScapeRawDatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <InnerObject>
+          <DatabaseName
+            Type="8"
+            Value="RMS" />
+          <ServerName
+            Type="8"
+            Value="\\APPEDMDEV" />
+          <TargetServerVersion
+            Type="3"
+            Value="150" />
+        </InnerObject>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TimeScape Silver Database]"
+      DTS:CreationName="TimeScape Database"
+      DTS:DTSID="{94E443CF-CEB9-49A6-9DD3-DF3DB9C74481}"
+      DTS:ObjectName="TimeScape Silver Database">
+      <DTS:PropertyExpression
+        DTS:Name="DatabaseName">@[User::TimeScapeSilverDatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <InnerObject>
+          <DatabaseName
+            Type="8"
+            Value="SILVER" />
+          <ServerName
+            Type="8"
+            Value="\\APPEDMDEV" />
+          <TargetServerVersion
+            Type="3"
+            Value="150" />
+        </InnerObject>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Exception Log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{18E78C6D-5773-4F8B-88D3-04BC7B792BBB}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A274C50-18BC-474D-9125-16CED02C6774}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">AddDraftRMSCodesErrors.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56FCBA10-266A-461B-A9A6-676E7E26CD33}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\DataFeeds\RMS\Exceptions\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8A657F36-BCDF-4EEF-89C4-C56FFE10FDE8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Server">
+      <DTS:VariableValue
+        DTS:DataType="8">\\APPEDMDEV</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CA4EECBA-C266-47DB-AD33-8B52F08CD41C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeScapeRawDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">RMS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{090A7A9D-A5D7-43C4-AEB3-9B8163E5DBFE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeScapeSilverDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">SILVER</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{18E78C6D-5773-4F8B-88D3-04BC7B792BBB}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Add Draft Company Codes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2D48036B-0C86-4BDB-80EA-BD55F20A0F80}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Draft Company Codes">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">3,7,OnError,31,TimeScape Create Item Transform,22,TimeScape Query Source</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Create Item Transform"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Query Source"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:SelectedLogProviders>
+          <DTS:SelectedLogProvider
+            DTS:InstanceID="{18E78C6D-5773-4F8B-88D3-04BC7B792BBB}" />
+        </DTS:SelectedLogProviders>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="[TimeScape Query Source].[Server]">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Add Draft Company Codes\TimeScape Add Draft Code"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Item Code Destination"
+              name="TimeScape Add Draft Code"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="CodeType">RMS_COMPANY_ID</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="NewCodeType">_DRAFT RMS_COMPANY_ID</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="CodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="CodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="NewCodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="NewCodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="CacheSize"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1000</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.ItemCodeDestination, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Connections[TimeScape Database Connector]"
+                  connectionManagerID="Package.ConnectionManagers[TimeScape Raw Database]"
+                  connectionManagerRefId="Package.ConnectionManagers[TimeScape Raw Database]"
+                  description="The target database to save all item codes to."
+                  name="TimeScape Database Connector" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination]"
+                  errorOrTruncationOperation="Item code could not be saved."
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="TimeScape Item Code Destination">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Code"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Item Code Destination Error Output"
+                  synchronousInputId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Add Draft Company Codes\TimeScape Query Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Query Source"
+              name="TimeScape Query Source"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Server to execute the query on."
+                  expressionType="Notify"
+                  name="Server">\\APPEDMDEV</property>
+                <property
+                  dataType="System.String"
+                  description="Query to execute to load the data."
+                  expressionType="Notify"
+                  name="Query">DatabaseItems('RMS','Company','RMS_COMPANY_ID').VALUES(Code).ROWS(1)</property>
+                <property
+                  dataType="System.String"
+                  description="Data rule to use with the query."
+                  expressionType="Notify"
+                  name="DataRule"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.QuerySource, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Output]"
+                  errorOrTruncationOperation="Could not process the row"
+                  errorRowDisposition="RedirectRow"
+                  name="Query Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Value]"
+                      length="255"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Value</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Value]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output]"
+                  isErrorOut="true"
+                  name="Query Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Value]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Value]"
+                      name="Value" />
+                    <outputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      name="Error message" />
+                    <outputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Add Draft Company Codes.Paths[Query Output]"
+              endId="Package\Add Draft Company Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination]"
+              name="Query Output"
+              startId="Package\Add Draft Company Codes\TimeScape Query Source.Outputs[Query Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Add Draft Security  Codes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{287a5d70-2485-4ea4-abc9-7cca663649b5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add Draft Security  Codes">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">3,7,OnError,31,TimeScape Create Item Transform,22,TimeScape Query Source</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Create Item Transform"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Query Source"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:SelectedLogProviders>
+          <DTS:SelectedLogProvider
+            DTS:InstanceID="{18E78C6D-5773-4F8B-88D3-04BC7B792BBB}" />
+        </DTS:SelectedLogProviders>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="[TimeScape Query Source].[Server]">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Add Draft Security  Codes\TimeScape Add Draft Code"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Item Code Destination"
+              name="TimeScape Add Draft Code"
+              usesDispositions="true"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="CodeType">RMS_SECURITY_ID</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="NewCodeType">_DRAFT RMS_SECURITY_ID</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="CodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="CodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="NewCodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="NewCodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="CacheSize"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1000</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.ItemCodeDestination, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Connections[TimeScape Database Connector]"
+                  connectionManagerID="Package.ConnectionManagers[TimeScape Raw Database]"
+                  connectionManagerRefId="Package.ConnectionManagers[TimeScape Raw Database]"
+                  description="The target database to save all item codes to."
+                  name="TimeScape Database Connector" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination]"
+                  errorOrTruncationOperation="Item code could not be saved."
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="TimeScape Item Code Destination">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Code"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Item Code Destination Error Output"
+                  synchronousInputId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Outputs[Item Code Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Add Draft Security  Codes\TimeScape Query Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Query Source"
+              name="TimeScape Query Source"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Server to execute the query on."
+                  expressionType="Notify"
+                  name="Server">\\APPEDMDEV</property>
+                <property
+                  dataType="System.String"
+                  description="Query to execute to load the data."
+                  expressionType="Notify"
+                  name="Query">DatabaseItems('RMS','Security','RMS_SECURITY_ID').VALUES(Code).ROWS(1)</property>
+                <property
+                  dataType="System.String"
+                  description="Data rule to use with the query."
+                  expressionType="Notify"
+                  name="DataRule"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.QuerySource, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Output]"
+                  errorOrTruncationOperation="Could not process the row"
+                  errorRowDisposition="RedirectRow"
+                  name="Query Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Value]"
+                      length="255"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Value</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Value]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output]"
+                  isErrorOut="true"
+                  name="Query Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Value]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Value]"
+                      name="Value" />
+                    <outputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      name="Error message" />
+                    <outputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Add Draft Security  Codes.Paths[Query Output]"
+              endId="Package\Add Draft Security  Codes\TimeScape Add Draft Code.Inputs[TimeScape Item Code Destination]"
+              name="Query Output"
+              startId="Package\Add Draft Security  Codes\TimeScape Query Source.Outputs[Query Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F955F2FD-1FE5-4570-8C61-94CF88D22660}"
+      DTS:From="Package\Add Draft Company Codes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Add Draft Security  Codes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Add Draft Company Codes"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Add Draft Security  Codes"
+          TopLeft="7.50000000000001,107.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="110.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Add Draft Company Codes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Add Draft Company Codes\TimeScape Query Source"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Add Draft Company Codes\TimeScape Add Draft Code"
+          TopLeft="11.5,107.5" />
+        <EdgeLayout
+          Id="Package\Add Draft Company Codes.Paths[Query Output]"
+          TopLeft="118,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Add Draft Security  Codes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Add Draft Security  Codes\TimeScape Add Draft Code"
+          TopLeft="11.5,107.5" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Add Draft Security  Codes\TimeScape Query Source"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package\Add Draft Security  Codes.Paths[Query Output]"
+          TopLeft="118,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

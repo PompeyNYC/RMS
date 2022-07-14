@@ -1,0 +1,447 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/6/2021 11:48:43 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLEDMDEV"
+  DTS:CreatorName="RACAP\sqladmin_DEV"
+  DTS:DTSID="{969C89B0-E5B2-45EE-9D47-C20A6053608B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CompanyTicker"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{897E8234-2A60-4081-8E5C-40FB5CA163FA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TimeScape Raw Database]"
+      DTS:CreationName="TimeScape Database"
+      DTS:DTSID="{BE3ED471-9BF8-4578-9FE1-EBC7A4B07867}"
+      DTS:ObjectName="TimeScape Raw Database">
+      <DTS:PropertyExpression
+        DTS:Name="DatabaseName">@[User::TimeScapeRawDatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <InnerObject>
+          <DatabaseName
+            Type="8"
+            Value="RMS" />
+          <ServerName
+            Type="8"
+            Value="\\APPEDMDEV" />
+          <TargetServerVersion
+            Type="3"
+            Value="150" />
+        </InnerObject>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{12F23AA1-1EDF-4B7A-846F-39E1952A133C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Server">
+      <DTS:VariableValue
+        DTS:DataType="8">\\APPEDMDEV</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C90D98BF-EB9C-427B-836D-1F621A8157BA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeScapeRawDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">RMS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8116CE2A-F547-4890-A733-C328438A7CE7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="[TimeScape Query Source].[Server]">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\TimeScape Query Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Query Source"
+              name="TimeScape Query Source"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Server to execute the query on."
+                  expressionType="Notify"
+                  name="Server">\\APPEDMDEV</property>
+                <property
+                  dataType="System.String"
+                  description="Query to execute to load the data."
+                  expressionType="Notify"
+                  name="Query">DATABASEITEMS('RMS','Company','RMS_COMPANY_ID','*').WHERE(security_id.security_ticker != null).Values(Code,security_id.security_ticker.LastValue,security_id.security_ticker.Date)</property>
+                <property
+                  dataType="System.String"
+                  description="Data rule to use with the query."
+                  expressionType="Notify"
+                  name="DataRule"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.QuerySource, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output]"
+                  errorOrTruncationOperation="Could not process the row"
+                  errorRowDisposition="RedirectRow"
+                  name="Query Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Code</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[Ticker]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].ExternalColumns[security_id.security_ticker.LastValue]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[Ticker]"
+                      name="Ticker">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">security_id.security_ticker.LastValue</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[TickerDate]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].ExternalColumns[security_id.security_ticker.LastDate]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[TickerDate]"
+                      name="TickerDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">security_id.security_ticker.LastDate</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].ExternalColumns[security_id.security_ticker.LastValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="security_id.security_ticker.LastValue" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].ExternalColumns[security_id.security_ticker.LastDate]"
+                      dataType="dbTimeStamp2"
+                      name="security_id.security_ticker.LastDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output]"
+                  isErrorOut="true"
+                  name="Query Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      name="Code" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[security_id.security_ticker.LastValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[security_id.security_ticker.LastValue]"
+                      name="security_id.security_ticker.LastValue" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[security_id.security_ticker.LastDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[security_id.security_ticker.LastDate]"
+                      name="security_id.security_ticker.LastDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      name="Error message" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TimeScape Values Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Values Destination"
+              name="TimeScape Values Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Target category of all properties to be saved."
+                  expressionType="Notify"
+                  name="Category">Company</property>
+                <property
+                  dataType="System.String"
+                  description="Code Type to use for all item codes. This is used when CodeTypeColumn = -1 as the code type is not provided in the column data."
+                  expressionType="Notify"
+                  name="CodeType">RMS_COMPANY_ID</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code type to use."
+                  expressionType="Notify"
+                  name="CodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Array of target properties corresponding to property input columns. Format: [ColumnName, TargetProperty, NoDataTokenOpt];[,,]; or [ColumnName, TargetProperty, NoDataTokenOpt, RefDatabase, RefCodeType]"
+                  expressionType="Notify"
+                  name="TargetProperties"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">[Ticker,company_ticker,]</property>
+                <property
+                  dataType="System.String"
+                  description="Target data source to use for all values. This is used when DataSourceColumn = -1 as the data source is not provided in the column data."
+                  expressionType="Notify"
+                  name="DataSource"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the target data source."
+                  expressionType="Notify"
+                  name="DataSourceColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code to use."
+                  expressionType="Notify"
+                  name="CodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.DateTime"
+                  description="The date of all values in the ValueColumn of the data columns when the target property is historic. Save date is ignored for static target properties."
+                  expressionType="Notify"
+                  name="SaveDate"
+                  typeConverter="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1899-12-30T00:00:00-05:00</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the date to use for historic properties. Save date is ignored for static target properties."
+                  expressionType="Notify"
+                  name="SaveDateColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of input rows to process before saving to the database."
+                  expressionType="Notify"
+                  name="RowsPerSave"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1</property>
+                <property
+                  dataType="System.String"
+                  description="Put here the error numbers (comma separated), considered fatal for the package execution."
+                  expressionType="Notify"
+                  name="FatalErrors"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"></property>
+                <property
+                  dataType="System.UInt32"
+                  description="The &quot;save value&quot; operation will be repeated up to the specified number of retries, if an error considered to be fatal occurs."
+                  expressionType="Notify"
+                  name="ServerRetries"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.String"
+                  description="Date column format if &quot;SaveDateColumn&quot; property is set.&#xA;Check this link for supported formats: https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.&#xA;QL+ query can also be used"
+                  expressionType="Notify"
+                  name="DateFormat"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.ValuesDestination, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TimeScape Values Destination.Connections[TimeScapeDatabaseConnector]"
+                  connectionManagerID="Package.ConnectionManagers[TimeScape Raw Database]"
+                  connectionManagerRefId="Package.ConnectionManagers[TimeScape Raw Database]"
+                  name="TimeScapeDatabaseConnector" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TimeScape Values Destination.Inputs[TimeScape Values Destination]"
+                  errorOrTruncationOperation="Property value could not be saved."
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="TimeScape Values Destination">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TimeScape Values Destination.Inputs[TimeScape Values Destination].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Code"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[Code]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TimeScape Values Destination.Inputs[TimeScape Values Destination].Columns[Ticker]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Ticker"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[Ticker]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TimeScape Values Destination.Inputs[TimeScape Values Destination].Columns[TickerDate]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TickerDate"
+                      lineageId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output].Columns[TickerDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TimeScape Values Destination.Outputs[Values Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Values Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\TimeScape Values Destination.Inputs[TimeScape Values Destination]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Values Destination.Outputs[Values Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TimeScape Values Destination.Outputs[Values Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TimeScape Values Destination.Outputs[Values Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TimeScape Values Destination.Outputs[Values Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Query Output]"
+              endId="Package\Data Flow Task\TimeScape Values Destination.Inputs[TimeScape Values Destination]"
+              name="Query Output"
+              startId="Package\Data Flow Task\TimeScape Query Source.Outputs[Query Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="154.857142857143,42.2857142857143"
+          Id="Package\Data Flow Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="204,42.2857142857143"
+          Id="Package\Data Flow Task\TimeScape Query Source"
+          TopLeft="17.5,5.49999999999997" />
+        <NodeLayout
+          Size="228,42.2857142857143"
+          Id="Package\Data Flow Task\TimeScape Values Destination"
+          TopLeft="5.50000000000001,107.785714285714" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Query Output]"
+          TopLeft="119.5,47.7857142857142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

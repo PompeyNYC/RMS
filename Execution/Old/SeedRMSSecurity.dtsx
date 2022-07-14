@@ -1,0 +1,555 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/9/2022 10:39:50 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLEDMDEV"
+  DTS:CreatorName="RACAP\sqladmin_DEV"
+  DTS:DTSID="{58DD1D16-2E4E-44A2-9FD4-641A29C707AC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SeedRMSSecurity"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{D5CBF525-B03C-4CBD-B960-00EDC23D6320}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Exception Log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{5542C5A6-19D3-471B-ABB4-7BBE17C7478C}"
+      DTS:ObjectName="Exception Log">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ExceptionFolder]+ @[User::ExceptionFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\DataFeeds\RMS\Exceptions\SeedRMSSecurityErrors.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TimeScape Silver Database]"
+      DTS:CreationName="TimeScape Database"
+      DTS:DTSID="{6EB20204-22B6-4CB4-AB7E-07494B182A30}"
+      DTS:ObjectName="TimeScape Silver Database">
+      <DTS:PropertyExpression
+        DTS:Name="DatabaseName">@[User::TimeScapeSilverDatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <InnerObject>
+          <DatabaseName
+            Type="8"
+            Value="SILVER" />
+          <ServerName
+            Type="8"
+            Value="\\APPEDMDEV" />
+          <TargetServerVersion
+            Type="3"
+            Value="150" />
+        </InnerObject>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Exception Log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{95701501-A007-4149-8BA5-47CB54AC38F0}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0A83C567-5F73-4BA9-A6B0-D60D5EB5E249}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">SeedRMSSecurityErrors.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{43A223ED-0A63-4C10-BC06-7A63CCCB1BA5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\DataFeeds\RMS\Exceptions\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A642905-7BAF-4328-B633-03A9C87E502F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Server">
+      <DTS:VariableValue
+        DTS:DataType="8">\\APPEDMDEV</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CA8E6782-60ED-4E80-8FEA-2574DBF7EEAB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeScapeSilverDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">SILVER</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{95701501-A007-4149-8BA5-47CB54AC38F0}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Seed RMS Security"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{220410DE-09E2-438D-B949-67A9E9D906B8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Seed RMS Security">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">3,7,OnError,31,TimeScape Create Item Transform,22,TimeScape Query Source</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Create Item Transform"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Query Source"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:SelectedLogProviders>
+          <DTS:SelectedLogProvider
+            DTS:InstanceID="{95701501-A007-4149-8BA5-47CB54AC38F0}" />
+        </DTS:SelectedLogProviders>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="[TimeScape Query Source].[Server]">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Seed RMS Security\TimeScape Create Security Silver"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Create Item Transform"
+              name="TimeScape Create Security Silver"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Code Type to use for all items. This is used when CodeTypeColumn = -1 as the code type is not provided in the column data."
+                  expressionType="Notify"
+                  name="CodeType">_DRAFT RMS_SECURITY_ID</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code type to use."
+                  expressionType="Notify"
+                  name="CodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Category to use for all items. This is used when CategoryColumn = -1 as the Category is not provided in the column data."
+                  expressionType="Notify"
+                  name="Category">_RMS Security</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code to use."
+                  expressionType="Notify"
+                  name="CodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the target Category."
+                  expressionType="Notify"
+                  name="CategoryColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the target Database. If this value is -1 a TimeScape Database connection manager is required."
+                  expressionType="Notify"
+                  name="DatabaseColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item description to use."
+                  expressionType="Notify"
+                  name="DescriptionColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.CreateItemTransform, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Seed RMS Security\TimeScape Create Security Silver.Connections[TimeScapeDatabaseConnector]"
+                  connectionManagerID="Package.ConnectionManagers[TimeScape Silver Database]"
+                  connectionManagerRefId="Package.ConnectionManagers[TimeScape Silver Database]"
+                  name="TimeScapeDatabaseConnector" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Seed RMS Security\TimeScape Create Security Silver.Inputs[Create Item Input]"
+                  errorOrTruncationOperation="Could not Create Item in Database"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="Create Item Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Inputs[Create Item Input].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Code"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].Columns[Code]" />
+                    <inputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Inputs[Create Item Input].Columns[Description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Description"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].Columns[Description]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Output]"
+                  name="Create Item Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">30</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Output].Columns[Description]"
+                      name="Description">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">33</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output]"
+                  isErrorOut="true"
+                  name="Create Item Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">30</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[Description]"
+                      name="Description">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">33</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Security\TimeScape Create Security Silver.Outputs[Create Item Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Seed RMS Security\TimeScape Query Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Query Source"
+              name="TimeScape Query Source"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Server to execute the query on."
+                  expressionType="Notify"
+                  name="Server">\\APPEDMDEV</property>
+                <property
+                  dataType="System.String"
+                  description="Query to execute to load the data."
+                  expressionType="Notify"
+                  name="Query">DatabaseItems('RMS','Security','RMS_SECURITY_ID').Where(security_name.LastValue NOT LIKE '*DELETE*' AND security_name.LastValue NOT LIKE '*DUPLICATE*' AND ISERROR(Item('SILVER',Code,CodeType).Category)).Values(Code,Description)</property>
+                <property
+                  dataType="System.String"
+                  description="Data rule to use with the query."
+                  expressionType="Notify"
+                  name="DataRule"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.QuerySource, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output]"
+                  errorOrTruncationOperation="Could not process the row"
+                  errorRowDisposition="RedirectRow"
+                  name="Query Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Code</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Description]"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].Columns[Description]"
+                      name="Description">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Description</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Description" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output]"
+                  isErrorOut="true"
+                  name="Query Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      name="Code" />
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      name="Error message" />
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Seed RMS Security.Paths[Query Output]"
+              endId="Package\Seed RMS Security\TimeScape Create Security Silver.Inputs[Create Item Input]"
+              name="Query Output"
+              startId="Package\Seed RMS Security\TimeScape Query Source.Outputs[Query Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Seed RMS Security"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Seed RMS Security">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Seed RMS Security\TimeScape Query Source"
+          TopLeft="27.1,5.49999999999995" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Seed RMS Security\TimeScape Create Security Silver"
+          TopLeft="5.5,107.1" />
+        <EdgeLayout
+          Id="Package\Seed RMS Security.Paths[Query Output]"
+          TopLeft="126.8,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.6"
+              Start="0,0"
+              End="0,52.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

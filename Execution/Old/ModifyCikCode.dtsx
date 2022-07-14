@@ -1,0 +1,1949 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/16/2021 5:04:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="XENODEMOUS27"
+  DTS:CreatorName="XENODEMOUS27\Xeno"
+  DTS:DTSID="{A3D2D8C0-3860-4A5D-B087-B0333088E249}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{F0AF3065-1981-4680-B385-6D06ABC1A33A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Exception Log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{1B5B40A9-C527-47C7-AD09-67EEB258B68D}"
+      DTS:ObjectName="Exception Log">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ExceptionFolder]+ @[User::ExceptionFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\DataFeeds\RMS\Exceptions\ModifyCikCodeErrors.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TimeScape Database]"
+      DTS:CreationName="TimeScape Database"
+      DTS:DTSID="{145ABF65-3BEB-4987-8AA9-86CED715AE8E}"
+      DTS:ObjectName="TimeScape Database">
+      <DTS:PropertyExpression
+        DTS:Name="DatabaseName">@[User::TimeScapeDatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <InnerObject>
+          <DatabaseName
+            Type="8"
+            Value="RMS" />
+          <ServerName
+            Type="8"
+            Value="\\APPEDMDEV" />
+          <TargetServerVersion
+            Type="3"
+            Value="150" />
+        </InnerObject>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Exception Log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{EF0DC0A6-47D8-40E9-BA52-576B31C55B5F}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DD026DF0-F862-414F-BB7E-39F7F109B3A1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">ModifyCikCodeErrors.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BB88BDCD-8897-4CB6-9005-0BBDB43E4BD8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\DataFeeds\RMS\Exceptions\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4DB853C6-CF47-4423-B798-A3D24AD3B3DB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Server">
+      <DTS:VariableValue
+        DTS:DataType="8">\\APPEDMDEV</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9DB324D6-28E9-4537-9311-809458D3D1E1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeScapeDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">RMS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{EF0DC0A6-47D8-40E9-BA52-576B31C55B5F}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Modify CIK Codes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{79007E8B-974F-455C-8F99-A16B4DAC26DB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Modify CIK Codes">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">5,7,OnError,31,TimeScape Create List Transform,27,TimeScape Item Query Source,22,TimeScape Query Source,27,TimeScape Value Destination</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Create List Transform"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Item Query Source"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Query Source"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Value Destination"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:SelectedLogProviders>
+          <DTS:SelectedLogProvider
+            DTS:InstanceID="{EF0DC0A6-47D8-40E9-BA52-576B31C55B5F}" />
+        </DTS:SelectedLogProviders>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Modify CIK Codes\SC - CIK Code List"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="SC - CIK Code List"
+              version="12">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public Output0Buffer Output0Buffer;
+
+    int InputsFinished = 0;
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+        if (Buffer.EndOfRowset)
+        {
+            InputsFinished = InputsFinished + 1;
+            if (InputsFinished == 1)
+            {
+                FinishOutputs();
+                MarkOutputsFinished();
+            }
+        }
+
+    }
+
+    public virtual void FinishOutputs()
+    {
+    }
+
+    private void MarkOutputsFinished()
+    {
+
+        if (null != Output0Buffer)
+        {
+            Output0Buffer.SetEndOfRowset();
+            Output0Buffer = null;
+        }
+
+    }
+
+    public override void PrimeOutput(int Outputs, int[] OutputIDs, PipelineBuffer[] Buffers, OutputNameMap OutputMap)
+    {
+       for(int Idx = 0; Idx < Outputs; Idx++)
+       {
+            if(OutputIDs[Idx] == GetOutputID(OutputMap, @"Output 0"))
+            {
+                Output0Buffer = new Output0Buffer(Buffers[Idx], GetColumnIndexes(OutputIDs[Idx]), OutputMap);
+            }
+        }
+
+        CreateNewOutputRows();
+
+    }
+
+    public virtual void CreateNewOutputRows()
+    {
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        try
+        {
+            if (!Row.CikCode_IsNull)
+            {
+                object oCIKCode = Row.CikCode;
+                if (oCIKCode != null)
+                {
+                    string[] asCIKCode = oCIKCode.ToString().Split(',');
+                    for (int i = 0; i < asCIKCode.Length; i++)
+                    {
+                        string sCIK = asCIKCode[i].Trim();
+                        if (sCIK.Length > 0)
+                        {
+                            string sCast = long.Parse(sCIK).ToString();
+                            Output0Buffer.AddRow();
+                            Output0Buffer.Code = Row.Code;
+                            Output0Buffer.CIKCode = sCast;
+                            Output0Buffer.CIKDate = Row.CikDate;
+                        }
+                    }
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            string sError = ex.Message;
+        }
+    }
+
+    public override void CreateNewOutputRows()
+    {
+        /*
+          Add rows by calling the AddRow method on the member variable named "<Output Name>Buffer".
+          For example, call MyOutputBuffer.AddRow() if your output was named "MyOutput".
+        */
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String Code
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool Code_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String CikCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool CikCode_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public DateTime CikDate
+    {
+        get
+        {
+            return Buffer.GetDateTime(BufferColumnIndexes[2]);
+        }
+    }
+    public bool CikDate_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+
+public class Output0Buffer: ScriptBuffer
+
+{
+    public Output0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String Code
+    {
+        set
+        {
+            this[0] = value;
+        }
+    }
+    public bool Code_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String CIKCode
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool CIKCode_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTime CIKDate
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool CIKDate_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public void AddRow()
+    {
+        base.AddRow();
+    }
+
+    new public void SetEndOfRowset()
+    {
+        base.SetEndOfRowset();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_7db26f8b992a49248aa25a9efbbb40fb.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F13A2EBB-E7E4-41E0-B31C-5B91A251FBEC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_7db26f8b992a49248aa25a9efbbb40fb</RootNamespace>
+    <AssemblyName>SC_7db26f8b992a49248aa25a9efbbb40fb</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptComponent" IconIndex="0" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC150</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_7db26f8b992a49248aa25a9efbbb40fb")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_7db26f8b992a49248aa25a9efbbb40fb")]
+[assembly: AssemblyCopyright("Copyright @  2021")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_7db26f8b992a49248aa25a9efbbb40fb</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_7db26f8b992a49248aa25a9efbbb40fb</msb:DisplayName>
+    <msb:ProjectId>{F8BC38F2-C87F-4CEA-887A-4D50789B14A3}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_7db26f8b992a49248aa25a9efbbb40fb.csproj" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="main.cs" />
+    <msb:File Include="BufferWrapper.cs" />
+    <msb:File Include="ComponentWrapper.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_7db26f8b992a49248aa25a9efbbb40fb.Properties.Settings.get_Default():SC_7db26f8b992a49248aa25a9efbbb40fb.Properties.Sett" +
+    "ings")]
+
+namespace SC_7db26f8b992a49248aa25a9efbbb40fb.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_7db26f8b992a49248aa25a9efbbb40fb.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_7db26f8b992a49248aa25a9efbbb40fb.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_7db26f8b992a49248aa25a9efbbb40fb.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_7db26f8b992a49248aa25a9efbbb40fb.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_7db26f8b992a49248aa25a9efbbb40fb.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_7db26f8b992a49248aa25a9efbbb40fb.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDADW6XGEAAAAAAAAAAOAAIiALATAAABgAAAAIAAAAAAAAOjcA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOg2AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAQBcAAAAgAAAAGAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAaAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAIAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAc
+NwAAAAAAAEgAAAACAAUAjCMAAKQSAAABAAAAAAAAADA2AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKBAAAAoqHgIoEQAACiobMAUApQAAAAEAABEDbwoAAAY6
+jwAAAANvCQAABgoGOYIAAAAGbxIAAAoXjRwAAAElFh8snW8TAAAKCxYMK2EHCJpvFAAACg0JbxUA
+AAoWMUsJKBYAAAoTBRIFKBcAAAoTBAJ7AwAABG8WAAAGAnsDAAAEA28HAAAGbxAAAAYCewMAAAQR
+BG8SAAAGAnsDAAAEA28LAAAGbxQAAAYIF1gMCAeOaTKZ3ghvGAAACibeACoAAAABEAAAAAAAAJyc
+AAgPAAABBioeAigZAAAGKioCAwQFKBkAAAoqUgJ7GgAACgJ7GwAAChaUbxwAAAoqIgIWKB0AAAoq
+UgJ7GgAACgJ7GwAACheUbxwAAAoqIgIXKB0AAAoqUgJ7GgAACgJ7GwAAChiUbx4AAAoqIgIYKB0A
+AAoqHgIoHwAACioeAiggAAAKKiYCFgMoIQAACipaAywIAhYoIgAACipyAQAAcHMjAAAKeiYCFwMo
+IQAACipaAywIAhcoIgAACipyAQAAcHMjAAAKejoCGAOMEwAAASghAAAKKloDLAgCGCgiAAAKKnIB
+AABwcyMAAAp6HgIoJAAACioeAiglAAAKKn4CKCYAAAoCAnMhAAAGfQEAAAQCAnMiAAAGfQIAAAQq
+ABMwBABPAAAAAAAAAARyngAAcBpvJwAACiwVAgUCAygoAAAKDgRzBgAABm8fAAAGBW8pAAAKLCMC
+AnsEAAAEF1h9BAAABAJ7BAAABBczDAJvGwAABgIoHAAABipuAnsDAAAELBICewMAAARvFwAABgIU
+fQMAAAQqABMwBQA9AAAAAgAAERYKKy4EBpQOBHKuAABwKCoAAAozGQIFBpoCBAaUKCgAAAoOBHMP
+AAAGfQMAAAQGF1gKBgMyzgJvHgAABipKKwcCA28gAAAGA28NAAAGLfEqOgIoKwAACgIDfQUAAAQq
+OgIoKwAACgIDfQYAAAQqHgIoKwAACiqufgcAAAQtHnLAAABw0AgAAAIoLAAACm8tAAAKcy4AAAqA
+BwAABH4HAAAEKhp+CAAABCoeAoAIAAAEKhp+CQAABCoeAigvAAAKKi5zKAAABoAJAAAEKkJTSkIB
+AAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAHwHAAAjfgAA6AcAAIQHAAAjU3RyaW5ncwAA
+AABsDwAANAEAACNVUwCgEAAAEAAAACNHVUlEAAAAsBAAAPQBAAAjQmxvYgAAAAAAAAACAAABVxWi
+AQkBAAAA+gEzABYAAAEAAAAjAAAACQAAAAkAAAApAAAAGgAAAC8AAAAQAAAAAgAAAAQAAAAPAAAA
+EAAAAAEAAAAEAAAAAQAAAAAAlgMBAAAAAAAGAHkCYwUGAA0DYwUGAMUBUAUPANcFAAAGAPIBiAQG
+AFwCiAQGAD0CiAQGAPQCiAQGAJkCiAQGALICiAQGAAkCiAQGACQCSAMKAM0C9AAGAIoGOwQGAKoE
+OwQKABgF9AAOAAkF9AAKANEE9AAGAOsAOwQKAOAG9AAGAKgBUAUGACkFgwUGAMUEcwQSAHgBgAMS
+ANkBgAMSAEIBXgQGAI0BYwUGAOkEOwQGAG4DOwQGAAEAOwQGAJoEOwQGALQEOwQGABUBOwQGALoA
+OwQGAHgHiAQAAAAABwAAAAAAAQABAAEAEABTBAAAFAABAAEAAQAQAO4EAABBAAEABgABABAA+wQA
+AEEAAQAPAAEAEADCBgAAUQABABkAAQAQAFQGAAA5AAUAIQABABAAFQYAADkABgAiAAAAEACKBeYF
+OQAHACMAAAEQAEQG5gVpAAkAJwAGAFQGpwAGABUGqwAGAPsErwABAFEAswABANAGtgABANAGtgAR
+AEcEugARADIBvgARAHQAwgBQIAAAAADGACsDBgABAFggAAAAAMYANgMGAAEAYCAAAAAAxgBVB8YA
+AQAkIQAAAADGAHYGBgACACYhAAAAAIYYOQUGAAIALiEAAAAAhhg5BTkAAgA5IQAAAACGCJAAJQAF
+AE4hAAAAAIYI0QNbAAUAVyEAAAAAhgiiACUABQBsIQAAAACGCPEDWwAFAHUhAAAAAIYIbAHMAAUA
+iiEAAAAAhggXBFsABQCTIQAAAACGAGwHWwAFAJshAAAAAIYApAZbAAUALiEAAAAAhhg5BTkABQCj
+IQAAAACGCJkAEAAIAK0hAAAAAIYI4QPRAAkAxCEAAAAAhgiEABAACgDOIQAAAACGCL4D0QALAOUh
+AAAAAIYIYAHWAAwA9CEAAAAAhggEBNEADQALIgAAAACGAE4HBgAOABMiAAAAAIYAoQYGAA4AmyEA
+AAAAhgCkBlsADgAbIgAAAACGGDkFBgAOADwiAAAAAMYANQfcAA4AJCEAAAAAxgFoBgYAEgCXIgAA
+AACBAGAABgASALQiAAAAAMYAQgfmABIAJCEAAAAAxgF2BgYAFgD9IgAAAADGAS4HxgAWACQhAAAA
+AMYBVQfGABcAECMAAAAAhhg5BfIAGAAfIwAAAACGGDkF8gAZAC4jAAAAAIMYOQUGABoANiMAAAAA
+kwglBfgAGgBiIwAAAACTCBoB/QAaAGkjAAAAAJMIJgECARoAcSMAAAAAlgi2BggBGwB4IwAAAACG
+GDkFBgAbAIAjAAAAAJEYPwUNARsAAAABAHAHAAABAB4FAAACAB8GAAADAN8EAAABAB4FAAACAB8G
+AAADAN8EAAABAEIDAAABAEIDAAABAEIDAAABAEIDAAABAEIDAAABAEIDAAABABAAAAACAN4AAAAD
+AB4FAAAEAN8EAAABAG4GAAACAEYFAAADAGAGAAAEAN8EAAABAB4FAAABAHAHAAABAOYGAAABAOYG
+AAABAEIDCQA5BQEAEQA5BQYAGQA5BQoAKQA5BRAAMQA5BRAAOQA5BRAAQQA5BRAASQA5BRAAUQA5
+BRAAWQA5BRAAYQA5BRAAaQA5BQYAqQA5BQYAyQA5BRUA2QA5BQYAoQArAwYAoQA2AwYAcQBiAyUA
+6QCwBikA6QBCBCUA6QB1AzAA8QBaATQA8QBiAyUAeQCuACUAgQA5BTkAgQAeBUMAgQAfBkcAiQBr
+A0sAgQAjBFAAiQDoAFUAgQBsB1sAgQCkBlsAgQAyBF8AgQAqBAEA+QA5BRAAgQBOBwYAgQChBgYA
+oQA5BQYA6QBNBmUAoQAzBm0AiQCRBlsAoQAYAHcAcQA5BQYACQHMAH4ACQF0B4cAsQA5BY0A0QA5
+BQYALgALAC0BLgATADYBLgAbAFUBLgAjAF4BLgArAIcBLgAzAIcBLgA7AIcBLgBDAF4BLgBLAI0B
+LgBTAIcBLgBbAKQBQwBjAO4BAwFrAO4BIQF7AO4BqQFzAFUByQFzAFUBGwBzAAMAAQAEAAcACAAN
+AAkADwAAAKkAEQEAAPgDFQEAAKYAEQEAAPUDFQEAAHABGQEAABsEFQEAAKkAEQEAAPgDFQEAAIgA
+EQEAAMIDFQEAAGQBGQEAAAgEFQEAACkFHgEAADoBIwEAALoGKAECAAcAAwACAAgABQACAAkABwAC
+AAoACQACAAsACwACAAwADQABABAADwABABEAEQABABIAEwABABMAFQABABQAFwABABUAGQACACQA
+GwACACUAHQABACYAHQACACcAHwAEgAAAAQAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAAAAAAAlQBI
+AAAAAAAPAAAAAAAAAAAAAACeAPAGAAAAAA8AAAAAAAAAAAAAAJ4ADQcAAAAABAAAAAAAAAAAAAAA
+lQA7BAAAAAAAAAAAAQAAAJQFAAAAAAAAAEludDY0ADxNb2R1bGU+AElucHV0SUQAR2V0T3V0cHV0
+SUQAU0NfN2RiMjZmOGI5OTJhNDkyNDhhYTI1YTllZmJiYjQwZmIAbXNjb3JsaWIASW5wdXRzRmlu
+aXNoZWQATWFya091dHB1dHNGaW5pc2hlZABkZWZhdWx0SW5zdGFuY2UAc2V0X0NJS0NvZGUAZ2V0
+X0NvZGUAc2V0X0NvZGUAZ2V0X0Npa0NvZGUAZ2V0X01lc3NhZ2UAUnVudGltZVR5cGVIYW5kbGUA
+R2V0VHlwZUZyb21IYW5kbGUASW5wdXROYW1lAEdldERhdGVUaW1lAE1pY3Jvc29mdC5TcWxTZXJ2
+ZXIuRHRzLlBpcGVsaW5lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0
+dXJlAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAFBhcnNlAHNldF9DSUtEYXRlAGdldF9DaWtEYXRl
+AEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2Vy
+Tm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVB
+dHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0
+ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRl
+AEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJp
+YnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUA
+U1NJU1NjcmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0
+cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFByZUV4ZWN1dGUAUG9zdEV4ZWN1
+dGUAdmFsdWUAU3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBUb1N0cmluZwBHZXRTdHJpbmcAZ2V0
+X0xlbmd0aABTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU0NfN2RiMjZmOGI5OTJhNDkyNDhhYTI1YTll
+ZmJiYjQwZmIuZGxsAHNldF9DSUtDb2RlX0lzTnVsbABnZXRfQ29kZV9Jc051bGwAc2V0X0NvZGVf
+SXNOdWxsAGdldF9DaWtDb2RlX0lzTnVsbABzZXRfQ0lLRGF0ZV9Jc051bGwAZ2V0X0Npa0RhdGVf
+SXNOdWxsAFNldE51bGwAc2V0X0l0ZW0AU3lzdGVtAFRyaW0AcmVzb3VyY2VNYW4AU2NyaXB0TWFp
+bgBTeXN0ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVj
+dGlvbgBJbnZhbGlkT3BlcmF0aW9uRXhjZXB0aW9uAFN0cmluZ0NvbXBhcmlzb24AQ3VsdHVyZUlu
+Zm8AT3V0cHV0TmFtZU1hcABPdXRwdXRNYXAAQ2hhcgBJbnB1dDBCdWZmZXIAT3V0cHV0MEJ1ZmZl
+cgBQaXBlbGluZUJ1ZmZlcgBTY3JpcHRCdWZmZXIAZ2V0X1Jlc291cmNlTWFuYWdlcgAuY3RvcgAu
+Y2N0b3IAT3V0cHV0SURzAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxl
+clNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU0NfN2RiMjZmOGI5OTJhNDkyNDhhYTI1YTllZmJi
+YjQwZmIuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNDXzdk
+YjI2ZjhiOTkyYTQ5MjQ4YWEyNWE5ZWZiYmI0MGZiLlByb3BlcnRpZXMAVmFyaWFibGVzAEJ1ZmZl
+ckNvbHVtbkluZGV4ZXMAR2V0Q29sdW1uSW5kZXhlcwBTZXR0aW5ncwBFcXVhbHMAQ29ubmVjdGlv
+bnMAQnVmZmVycwBGaW5pc2hPdXRwdXRzAENyZWF0ZU5ld091dHB1dFJvd3MAT2JqZWN0AGdldF9F
+bmRPZlJvd3NldABTZXRFbmRPZlJvd3NldABTcGxpdABnZXRfRGVmYXVsdABVc2VyQ29tcG9uZW50
+AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZlci5UeFNj
+cmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vzc0lucHV0
+AFByaW1lT3V0cHV0AEFkZFJvdwBJbnB1dDBfUHJvY2Vzc0lucHV0Um93AE5leHRSb3cAZ2V0X0Fz
+c2VtYmx5AAAAAACAm0kAcwBOAHUAbABsACAAcAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQA
+IABiAGUAIABzAGUAdAAgAHQAbwAgAEYAYQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBh
+AGwAdQBlACAAdABvACAAdABoAGUAIABjAG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kA
+bgBwAHUAdAAgADAAABFPAHUAdABwAHUAdAAgADAAAHFTAEMAXwA3AGQAYgAyADYAZgA4AGIAOQA5
+ADIAYQA0ADkAMgA0ADgAYQBhADIANQBhADkAZQBmAGIAYgBiADQAMABmAGIALgBQAHIAbwBwAGUA
+cgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAAA/+zlBTWCEWrZVyOmJ6AAwAEIAEBCAMg
+AAEFIAEBEREEIAEBDgUgAQERYQkHBhwdDggODgoDIAAOBiABHQ4dAwMgAAgEAAEKDgkgAwESRR0I
+EkkDBhJFAwYdCAQgAQ4IBCABAggFIAERTQgDIAACBSACAQgcByACAg4RgIEFIAEdCAgDBwEIBgAC
+CBJJDggAARKAhRGAiQUgABKAjQcgAgEOEoCNCLd6XFYZNOCJCImEXc2AgMyRAwYSGAMGEhwDBhIQ
+AgYIAwYSUQMGElkDBhJdAwYSJAUgAQESDAQgABFNBCABAQIFIAEBEU0JIAQBCA4SRRJJCyAEAQgd
+CB0SRRJJBSABARJRBAAAElkEAAASXQUAAQESXQQAABIkAwAAAQMoAA4DKAACBCgAEU0ECAASWQQI
+ABJdBAgAEiQIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAA
+KAEAI1NDXzdkYjI2ZjhiOTkyYTQ5MjQ4YWEyNWE5ZWZiYmI0MGZiAAAFAQAAAAAWAQARQ29weXJp
+Z2h0IEAgIDIwMjEAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3b3Jr
+RGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC43BAEAAAAAtAAAAM7K774BAAAAkQAAAGxTeXN0
+ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBD
+dWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJl
+c291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAABA3AAAAAAAA
+AAAAACo3AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcNwAAAAAAAAAAAAAAAF9Db3JEbGxNYWlu
+AG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgA
+AABYQAAA7AMAAAAAAAAAAAAA7AM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAA
+AL0E7/4AAAEAAAABAAAAAAAAAAEAAAAAAD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
+AQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAA
+AAAAAACwBEwDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAACgDAAABADAAMAAwADAA
+MAA0AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEAbgB5
+AE4AYQBtAGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAA
+UwBDAF8ANwBkAGIAMgA2AGYAOABiADkAOQAyAGEANAA5ADIANAA4AGEAYQAyADUAYQA5AGUAZgBi
+AGIAYgA0ADAAZgBiAAAAMAAIAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADAA
+LgAwAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwA3AGQAYgAyADYAZgA4
+AGIAOQA5ADIAYQA0ADkAMgA0ADgAYQBhADIANQBhADkAZQBmAGIAYgBiADQAMABmAGIALgBkAGwA
+bAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkAcgBpAGcAaAB0
+ACAAQAAgACAAMgAwADIAMQAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBkAGUAbQBhAHIAawBzAAAA
+AAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAAAFMAQwBfADcAZABi
+ADIANgBmADgAYgA5ADkAMgBhADQAOQAyADQAOABhAGEAMgA1AGEAOQBlAGYAYgBiAGIANAAwAGYA
+YgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABTAEMAXwA3AGQAYgAy
+ADYAZgA4AGIAOQA5ADIAYQA0ADkAMgA0ADgAYQBhADIANQBhADkAZQBmAGIAYgBiADQAMABmAGIA
+AAA0AAgAAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAOAAI
+AAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAADw3AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_7db26f8b992a49248aa25a9efbbb40fb</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">566c5b6360b76aed07c802566acf14a1</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">98e768980053b830120594dc0649f74689229542</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">A3</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Modify CIK Codes\SC - CIK Code List.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\SC - CIK Code List.Inputs[Input 0].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Code"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]" />
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\SC - CIK Code List.Inputs[Input 0].Columns[CikCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CikCode"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[CikCode]" />
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\SC - CIK Code List.Inputs[Input 0].Columns[CikDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CikDate"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[CikDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0]"
+                  hasSideEffects="true"
+                  name="Output 0">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[Code]"
+                      name="Code" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[CIKCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[CIKCode]"
+                      name="CIKCode" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[CIKDate]"
+                      dataType="date"
+                      lineageId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[CIKDate]"
+                      name="CIKDate" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Modify CIK Codes\TimeScape Create CIK Code List"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Create List Transform"
+              name="TimeScape Create CIK Code List"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.CreateListTransform, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+                <property
+                  dataType="System.String"
+                  description="Column(s) that delimit the list, i.e. the list value spans the range for which these column values are constant. Format: Comma seperated list of pipeline column names or zero-based indexes."
+                  expressionType="Notify"
+                  name="List Delimiter Columns">Code,CIKDate</property>
+                <property
+                  dataType="System.String"
+                  description="Column(s) output to the second transformation output containing the list values. Format: Comma seperated list of pipeline column names or zero-based indexes."
+                  expressionType="Notify"
+                  name="List Output Columns"
+                  typeConverter="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">Code,CIKDate</property>
+                <property
+                  dataType="System.String"
+                  description="Array of target properties corresponding to property input columns. Format: [ColumnName, ColumnHeader, ColumnDataType];[,,]; or [ColumnName, ColumnHeader, ColumnDataType, ColumnRefDatabaseOpt, ColumnRefCodeTypeOpt]"
+                  expressionType="Notify"
+                  name="Column Definitions"
+                  typeConverter="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">[CIKCode,CIKCode,String,CIKDate,DateTime]</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Inputs[Input]"
+                  errorOrTruncationOperation="Could not add row to list"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Inputs[Input].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Code"
+                      lineageId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[Code]" />
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Inputs[Input].Columns[CIKCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CIKCode"
+                      lineageId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[CIKCode]" />
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Inputs[Input].Columns[CIKDate]"
+                      cachedDataType="date"
+                      cachedName="CIKDate"
+                      lineageId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0].Columns[CIKDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[Output]"
+                  exclusionGroup="1"
+                  name="Output"
+                  synchronousInputId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Inputs[Input]">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error Output"
+                  synchronousInputId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Inputs[Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output]"
+                  name="List Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">18</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[CIKDate]"
+                      dataType="date"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[CIKDate]"
+                      name="CIKDate">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">100</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[TimeScape List]"
+                      codePage="1252"
+                      dataType="text"
+                      description="TimeScape List"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[TimeScape List]"
+                      name="TimeScape List" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Modify CIK Codes\TimeScape Query Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Query Source"
+              name="TimeScape Query Source"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Server to execute the query on."
+                  expressionType="Notify"
+                  name="Server">\\APPEDMDEV</property>
+                <property
+                  dataType="System.String"
+                  description="Query to execute to load the data."
+                  expressionType="Notify"
+                  name="Query">DATABASEITEMS('RMS','Company','RMS_COMPANY_ID','*').VALUES(Code,company_sec_id.LastValue,company_sec_id.LastDate)</property>
+                <property
+                  dataType="System.String"
+                  description="Data rule to use with the query."
+                  expressionType="Notify"
+                  name="DataRule"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.QuerySource, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output]"
+                  errorOrTruncationOperation="Could not process the row"
+                  errorRowDisposition="RedirectRow"
+                  name="Query Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      length="255"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Code</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[CikCode]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[company_sec_id.LastValue]"
+                      length="255"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[CikCode]"
+                      name="CikCode">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">company_sec_id.LastValue</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[CikDate]"
+                      dataType="dbTimeStamp2"
+                      externalMetadataColumnId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[company_sec_id.LastDate]"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].Columns[CikDate]"
+                      name="CikDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">company_sec_id.LastDate</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[company_sec_id.LastValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="company_sec_id.LastValue" />
+                    <externalMetadataColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output].ExternalColumns[company_sec_id.LastDate]"
+                      dataType="dbTimeStamp2"
+                      name="company_sec_id.LastDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output]"
+                  isErrorOut="true"
+                  name="Query Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      name="Code" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[company_sec_id.LastValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[company_sec_id.LastValue]"
+                      name="company_sec_id.LastValue" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[company_sec_id.LastDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[company_sec_id.LastDate]"
+                      name="company_sec_id.LastDate" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      name="Error message" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Modify CIK Codes\TimeScape Save CIK List"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Value Destination"
+              name="TimeScape Save CIK List"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Code Type to use for all item codes. This is used when CodeTypeColumn = -1 as the code type is not provided in the column data."
+                  expressionType="Notify"
+                  name="CodeType">RMS_COMPANY_ID</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code type to use."
+                  expressionType="Notify"
+                  name="CodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Target property name to use for all values. This is used when PropertyNameColumn = -1 as the property name is not provided in the column data."
+                  expressionType="Notify"
+                  name="PropertyName">company_sec_id_list</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the target property name."
+                  expressionType="Notify"
+                  name="PropertyNameColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Target data source to use for all values. This is used when DataSourceColumn = -1 as the data source is not provided in the column data. If target property is single sourced this value must be left blank or set to 'Internal'."
+                  expressionType="Notify"
+                  name="DataSource"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the target data source."
+                  expressionType="Notify"
+                  name="DataSourceColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The data type of all values in the ValueColumn in the column data."
+                  expressionType="Notify"
+                  name="DataType"
+                  typeConverter="Xenomorph.DbDataType, Xenomorph.Generic, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e">8</property>
+                <property
+                  dataType="System.Int32"
+                  description="The numer of data rows to cache before saving to the database."
+                  expressionType="Notify"
+                  name="CacheSize"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">10000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code to use."
+                  expressionType="Notify"
+                  name="CodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the value to save."
+                  expressionType="Notify"
+                  name="ValueColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1</property>
+                <property
+                  dataType="System.String"
+                  description="Reference database to use for all values when the data type of the values to save is Reference. This is used when ReferenceDatabaseColumn = -1 as the database is not provided in the column data."
+                  expressionType="Notify"
+                  name="ReferenceDatabase"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the reference database to use when the data type of the values to save is Reference."
+                  expressionType="Notify"
+                  name="ReferenceDatabaseColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Reference code type to use for all values when the data type of the values to save is Reference. This is used when ReferenceCodeTypeColumn = -1 as the reference code type is not provided in the column data."
+                  expressionType="Notify"
+                  name="ReferenceCodeType"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the reference code type to use when the data type of the values to save is Reference."
+                  expressionType="Notify"
+                  name="ReferenceCodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Null"
+                  description="The date of all values in the ValueColumn of the data columns when the target property is historic. This is used when SaveDateColumn = -1. Leave blank for static target properties."
+                  expressionType="Notify"
+                  name="SaveDate"
+                  typeConverter="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the date of the value in the ValueColumn when the target property is historic."
+                  expressionType="Notify"
+                  name="SaveDateColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">2</property>
+                <property
+                  dataType="System.String"
+                  description="If property holds tick data, specifies the type of overwriting for existing series (default = All). All = append to existing series. Day = first remove all values in each overlapping day."
+                  expressionType="Notify"
+                  name="TickOverwriteType">All</property>
+                <property
+                  dataType="System.Boolean"
+                  description="If True the process is audited, else it is not audited."
+                  expressionType="Notify"
+                  name="AuditProcess"
+                  typeConverter="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.ValueDestination, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Modify CIK Codes\TimeScape Save CIK List.Connections[TimeScape Database Connector]"
+                  connectionManagerID="Package.ConnectionManagers[TimeScape Database]"
+                  connectionManagerRefId="Package.ConnectionManagers[TimeScape Database]"
+                  description="The target database to save all item values to."
+                  name="TimeScape Database Connector" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Modify CIK Codes\TimeScape Save CIK List.Inputs[TimeScape Value Destination]"
+                  errorOrTruncationOperation="Property value could not be saved."
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="TimeScape Value Destination">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Save CIK List.Inputs[TimeScape Value Destination].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Code"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[Code]" />
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Save CIK List.Inputs[TimeScape Value Destination].Columns[TimeScape List]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="TimeScape List"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[TimeScape List]" />
+                    <inputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Save CIK List.Inputs[TimeScape Value Destination].Columns[CIKDate]"
+                      cachedDataType="date"
+                      cachedName="CIKDate"
+                      lineageId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output].Columns[CIKDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Modify CIK Codes\TimeScape Save CIK List.Outputs[Value Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Value Destination Error Output"
+                  synchronousInputId="Package\Modify CIK Codes\TimeScape Save CIK List.Inputs[TimeScape Value Destination]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Save CIK List.Outputs[Value Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Modify CIK Codes\TimeScape Save CIK List.Outputs[Value Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Modify CIK Codes\TimeScape Save CIK List.Outputs[Value Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Modify CIK Codes\TimeScape Save CIK List.Outputs[Value Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Modify CIK Codes.Paths[List Output]"
+              endId="Package\Modify CIK Codes\TimeScape Save CIK List.Inputs[TimeScape Value Destination]"
+              name="List Output"
+              startId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Outputs[List Output]" />
+            <path
+              refId="Package\Modify CIK Codes.Paths[Output 0]"
+              endId="Package\Modify CIK Codes\TimeScape Create CIK Code List.Inputs[Input]"
+              name="Output 0"
+              startId="Package\Modify CIK Codes\SC - CIK Code List.Outputs[Output 0]" />
+            <path
+              refId="Package\Modify CIK Codes.Paths[Query Output]"
+              endId="Package\Modify CIK Codes\SC - CIK Code List.Inputs[Input 0]"
+              name="Query Output"
+              startId="Package\Modify CIK Codes\TimeScape Query Source.Outputs[Query Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="166.857142857143,42.2857142857143"
+          Id="Package\Modify CIK Codes"
+          TopLeft="10.5,8.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Modify CIK Codes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="205.142857142858,42.2857142857143"
+          Id="Package\Modify CIK Codes\TimeScape Query Source"
+          TopLeft="23.5,5.5" />
+        <NodeLayout
+          Size="170.857142857143,42.2857142857143"
+          Id="Package\Modify CIK Codes\SC - CIK Code List"
+          TopLeft="40.5,107.5" />
+        <NodeLayout
+          Size="241.142857142858,42.2857142857143"
+          Id="Package\Modify CIK Codes\TimeScape Create CIK Code List"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="204,42.2857142857143"
+          Id="Package\Modify CIK Codes\TimeScape Save CIK List"
+          TopLeft="24,311.5" />
+        <EdgeLayout
+          Id="Package\Modify CIK Codes.Paths[Query Output]"
+          TopLeft="126,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Modify CIK Codes.Paths[Output 0]"
+          TopLeft="126,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Modify CIK Codes.Paths[List Output]"
+          TopLeft="126,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.95138671875,20.533203125,49.9027734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

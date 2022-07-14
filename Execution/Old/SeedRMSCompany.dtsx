@@ -1,0 +1,554 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/9/2022 10:39:50 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLEDMDEV"
+  DTS:CreatorName="RACAP\sqladmin_DEV"
+  DTS:DTSID="{DCE23767-0AC1-4B32-B048-01C45730A94F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SeedRMSCompany"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{DC69D311-526A-4A58-A50B-A829BC24304A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Exception Log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{0F38F5A4-1023-442F-A861-A2769D6ECDF4}"
+      DTS:ObjectName="Exception Log">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ExceptionFolder]+ @[User::ExceptionFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\DataFeeds\RMS\Exceptions\SeedRMSCompanyErrors.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TimeScape Silver Database]"
+      DTS:CreationName="TimeScape Database"
+      DTS:DTSID="{C42853E0-5783-46DE-B768-F6E35846081F}"
+      DTS:ObjectName="TimeScape Silver Database">
+      <DTS:PropertyExpression
+        DTS:Name="DatabaseName">@[User::TimeScapeSilverDatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <InnerObject>
+          <DatabaseName
+            Type="8"
+            Value="SILVER" />
+          <ServerName
+            Type="8"
+            Value="\\APPEDMDEV" />
+          <TargetServerVersion
+            Type="3"
+            Value="150" />
+        </InnerObject>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Exception Log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{7AAD65FA-0CDB-43EE-BCD2-4E7BA0A47648}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BA023AF1-3C03-46C5-8D28-A20A1232ABB2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">SeedRMSCompanyErrors.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{01062EAA-6B1F-477B-90A3-69BA18715751}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\DataFeeds\RMS\Exceptions\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{28D12AD2-2399-4121-A6FA-CEDCB6B6CFCA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Server">
+      <DTS:VariableValue
+        DTS:DataType="8">\\APPEDMDEV</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AB237DA7-7889-48E2-A92D-588CEBF4B2ED}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeScapeSilverDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">SILVER</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{7AAD65FA-0CDB-43EE-BCD2-4E7BA0A47648}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Seed RMS Company"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{71A2537A-345C-46E7-ADC4-D1055B06C0B0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Seed RMS Company">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">3,7,OnError,31,TimeScape Create Item Transform,22,TimeScape Query Source</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Create Item Transform"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape Query Source"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:SelectedLogProviders>
+          <DTS:SelectedLogProvider
+            DTS:InstanceID="{7AAD65FA-0CDB-43EE-BCD2-4E7BA0A47648}" />
+        </DTS:SelectedLogProviders>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="[TimeScape Query Source].[Server]">@[User::Server]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Seed RMS Company\TimeScape Create Company Silver"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Create Item Transform"
+              name="TimeScape Create Company Silver"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Code Type to use for all items. This is used when CodeTypeColumn = -1 as the code type is not provided in the column data."
+                  expressionType="Notify"
+                  name="CodeType">_DRAFT RMS_COMPANY_ID</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code type to use."
+                  expressionType="Notify"
+                  name="CodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Category to use for all items. This is used when CategoryColumn = -1 as the Category is not provided in the column data."
+                  expressionType="Notify"
+                  name="Category">_RMS Company</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item code to use."
+                  expressionType="Notify"
+                  name="CodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the target Category."
+                  expressionType="Notify"
+                  name="CategoryColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the target Database. If this value is -1 a TimeScape Database connection manager is required."
+                  expressionType="Notify"
+                  name="DatabaseColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Zero based index of data column that contains the item description to use."
+                  expressionType="Notify"
+                  name="DescriptionColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.CreateItemTransform, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Seed RMS Company\TimeScape Create Company Silver.Connections[TimeScapeDatabaseConnector]"
+                  connectionManagerID="Package.ConnectionManagers[TimeScape Silver Database]"
+                  connectionManagerRefId="Package.ConnectionManagers[TimeScape Silver Database]"
+                  name="TimeScapeDatabaseConnector" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Seed RMS Company\TimeScape Create Company Silver.Inputs[Create Item Input]"
+                  errorOrTruncationOperation="Could not Create Item in Database"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="Create Item Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Inputs[Create Item Input].Columns[Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Code"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].Columns[Code]" />
+                    <inputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Inputs[Create Item Input].Columns[Description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Description"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].Columns[Description]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Output]"
+                  name="Create Item Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">30</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Output].Columns[Description]"
+                      name="Description">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">33</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output]"
+                  isErrorOut="true"
+                  name="Create Item Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">30</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[Description]"
+                      name="Description">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="InputColumnLineageID">33</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Company\TimeScape Create Company Silver.Outputs[Create Item Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Seed RMS Company\TimeScape Query Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape Query Source"
+              name="TimeScape Query Source"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Server to execute the query on."
+                  expressionType="Notify"
+                  name="Server">\\APPEDMDEV</property>
+                <property
+                  dataType="System.String"
+                  description="Query to execute to load the data."
+                  expressionType="Notify"
+                  name="Query">DatabaseItems('RMS','Company','RMS_COMPANY_ID').Where(company_name.LastValue NOT LIKE '*DELETE*' AND company_name.LastValue NOT LIKE '*DUPLICATE*' AND ISERROR(Item('SILVER',Code,CodeType).Category)).Values(Code,Description)</property>
+                <property
+                  dataType="System.String"
+                  description="Data rule to use with the query."
+                  expressionType="Notify"
+                  name="DataRule"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.QuerySource, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output]"
+                  errorOrTruncationOperation="Could not process the row"
+                  errorRowDisposition="RedirectRow"
+                  name="Query Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].Columns[Code]"
+                      name="Code">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Code</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Description]"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].Columns[Description]"
+                      name="Description">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Description</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output].ExternalColumns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Description" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output]"
+                  isErrorOut="true"
+                  name="Query Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[Code]"
+                      name="Code" />
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[Error message]"
+                      name="Error message" />
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Seed RMS Company.Paths[Query Output]"
+              endId="Package\Seed RMS Company\TimeScape Create Company Silver.Inputs[Create Item Input]"
+              name="Query Output"
+              startId="Package\Seed RMS Company\TimeScape Query Source.Outputs[Query Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Seed RMS Company"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Seed RMS Company">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="197.6,41.6"
+          Id="Package\Seed RMS Company\TimeScape Query Source"
+          TopLeft="27.1,5.49999999999995" />
+        <NodeLayout
+          Size="240.8,41.6"
+          Id="Package\Seed RMS Company\TimeScape Create Company Silver"
+          TopLeft="5.50000000000001,107.1" />
+        <EdgeLayout
+          Id="Package\Seed RMS Company.Paths[Query Output]"
+          TopLeft="125.9,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

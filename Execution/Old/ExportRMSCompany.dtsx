@@ -1,0 +1,2510 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/7/2021 3:03:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="XENODEMOUS27"
+  DTS:CreatorName="XENODEMOUS27\Xeno"
+  DTS:DTSID="{EE9A5137-76E3-49FD-8CBC-4F254D7A5776}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0800.90"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ExportRMSCompany"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{4E84B90E-32FF-4C6A-B91C-57A1BAA6290E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Exception Log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{5FDF1F98-817C-41B9-AFEA-9504A600FA81}"
+      DTS:ObjectName="Exception Log">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ExceptionFolder]+ @[User::ExceptionFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Client\RA\DataFeeds\RMS\Exceptions\ExportRMSCompanyErrors.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Output File]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{D7A936CC-944A-4498-8FDA-A819DD9A9EDE}"
+      DTS:ObjectName="Output File">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::OutputFolder]+ @[User::OutputFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Client\RA\DataFeeds\RMS\Export\RMSCompanies.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_id"
+              DTS:DTSID="{82571CBD-3227-4E96-947A-D6456E0843C7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_fysm_id"
+              DTS:DTSID="{F476BD6E-418B-42F9-ADD1-3FA6B15AB70C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_name"
+              DTS:DTSID="{789B79F8-BA11-4749-8F91-71FE7317BC8D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_synonyms"
+              DTS:DTSID="{AFCFE500-40EC-4C3B-8FFA-8613411405EB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_sec_id"
+              DTS:DTSID="{7D15D1DB-4335-41E8-981E-A9A80A06F5C7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_isin_id"
+              DTS:DTSID="{8862253D-47AF-40E6-8441-F6E3799FF71D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_acorn_id"
+              DTS:DTSID="{B9E5602C-97F2-4D2A-B83A-68988B1C70F3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_duns_id"
+              DTS:DTSID="{9475D7C7-7992-4378-9DF4-C24A808534F8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_private"
+              DTS:DTSID="{B3E4706C-B383-46AB-9374-3F16D42AB165}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_acquired_by_id"
+              DTS:DTSID="{163CEFF1-0B9C-41EC-A10F-AC3492B12844}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_category"
+              DTS:DTSID="{7D56544D-10E6-4436-8AB1-189500EB4535}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_active"
+              DTS:DTSID="{322DBC4E-61BC-45AF-A1A3-2B601967D650}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_cash"
+              DTS:DTSID="{2996EFD1-DBFE-4B7C-9A8E-48F018C286B6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_market_cap"
+              DTS:DTSID="{D24B451E-01BD-449E-8E28-D99C14357C49}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_market_cap_premarket"
+              DTS:DTSID="{B9C82E1B-7F06-4CBB-A4F6-AAA744A9F40E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_market_cap_postmarkt"
+              DTS:DTSID="{6A9A2E1F-CE4D-4D52-B5F3-7184E310EDB7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_shares"
+              DTS:DTSID="{11930DC9-991F-487E-A3A6-B7BE28FD2359}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_debt"
+              DTS:DTSID="{591063F4-F7B9-425C-AE19-E58850E6283A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_burn"
+              DTS:DTSID="{6878D386-CD89-452E-956F-CC9174CAAC02}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_ev"
+              DTS:DTSID="{8CE17228-6FF7-4772-B2A4-1FFDE9328645}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_revenue"
+              DTS:DTSID="{DF032381-5283-4AD4-920B-06C34692A14B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="company_years_of_cash"
+              DTS:DTSID="{00A3862E-938E-4AFB-BD7E-CA9D5890A80C}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RMS Companies]"
+      DTS:CreationName="TimeScape File Export"
+      DTS:DTSID="{3DE8D884-90B3-449C-BBC8-E4FA95B92102}"
+      DTS:ObjectName="RMS Companies">
+      <DTS:ObjectData>
+        <InnerObject>
+          <Code
+            Type="8"
+            Value="RMS Companies" />
+          <TargetServerVersion
+            Type="3"
+            Value="140" />
+        </InnerObject>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Exception Log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{E065506F-B1BE-414A-A471-FAD27C209959}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A75FCE1E-2269-426D-B9B5-9573E6F1556E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">ExportRMSCompanyErrors.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BA42C0F1-EE1A-4E9A-90BB-2700FEC511AC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExceptionFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Client\RA\DataFeeds\RMS\Exceptions\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{96FB8F6F-80B7-41E0-9ACB-E39932D10140}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">RMSCompanies.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4FA98882-EE16-4949-9CB4-9648DB387FB6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Client\RA\DataFeeds\RMS\Export\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{E065506F-B1BE-414A-A471-FAD27C209959}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Export RMS Company Data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{05E11452-C10F-4811-B26F-0BBADD48A4C3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export RMS Company Data">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape File Export Body Transform"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="TimeScape File Export Universe Source"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:SelectedLogProviders>
+          <DTS:SelectedLogProvider
+            DTS:InstanceID="{E065506F-B1BE-414A-A471-FAD27C209959}" />
+        </DTS:SelectedLogProviders>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export RMS Company Data\Output Company Data"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Output Company Data">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export RMS Company Data\Output Company Data.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Output File]"
+                  connectionManagerRefId="Package.ConnectionManagers[Output File]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_2"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_fysm_id]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_2]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_3"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_name]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_3]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_4"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_synonyms]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_4]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_5]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_5"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_sec_id]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_5]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_6]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_6"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_isin_id]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_6]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_7]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_7"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_acorn_id]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_7]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_8]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_8"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_duns_id]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_8]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_9]"
+                      cachedDataType="decimal"
+                      cachedName="Column_9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_private]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_9]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_10]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_10"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_acquired_by_id]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_10]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_11]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_11"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_category]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_11]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_12]"
+                      cachedDataType="decimal"
+                      cachedName="Column_12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_active]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_12]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_13]"
+                      cachedDataType="decimal"
+                      cachedName="Column_13"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_cash]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_13]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_14]"
+                      cachedDataType="decimal"
+                      cachedName="Column_14"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_market_cap]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_14]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_15]"
+                      cachedDataType="decimal"
+                      cachedName="Column_15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_market_cap_premarket]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_15]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_16]"
+                      cachedDataType="decimal"
+                      cachedName="Column_16"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_market_cap_postmarkt]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_16]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_17]"
+                      cachedDataType="decimal"
+                      cachedName="Column_17"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_shares]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_17]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_18]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_18"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_debt]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_18]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_19]"
+                      cachedDataType="decimal"
+                      cachedName="Column_19"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_burn]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_19]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_20]"
+                      cachedDataType="decimal"
+                      cachedName="Column_20"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_ev]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_20]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_21]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_21"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_revenue]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_21]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_22]"
+                      cachedDataType="decimal"
+                      cachedName="Column_22"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_years_of_cash]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_22]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].Columns[Column_1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_1"
+                      externalMetadataColumnId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_id]"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_1]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_fysm_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_fysm_id" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_name" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_synonyms]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_synonyms" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_sec_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_sec_id" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_isin_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_isin_id" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_acorn_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_acorn_id" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_duns_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_duns_id" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_private]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_private" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_acquired_by_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_acquired_by_id" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_category" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_active]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_active" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_cash]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_cash" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_market_cap]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_market_cap" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_market_cap_premarket]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_market_cap_premarket" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_market_cap_postmarkt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_market_cap_postmarkt" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_shares]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_shares" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_debt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_debt" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_burn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_burn" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_ev]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_ev" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_revenue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_revenue" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_years_of_cash]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_years_of_cash" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input].ExternalColumns[company_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="company_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export RMS Company Data\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_1"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_3"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_4"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_4]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_5]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_5"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_5]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_6]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_6"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_6]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_7]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_7"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_7]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_8]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_8"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_8]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_9]"
+                      cachedDataType="decimal"
+                      cachedName="Column_9"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_9]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_10]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_10"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_10]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_11]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_11"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_11]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_12]"
+                      cachedDataType="decimal"
+                      cachedName="Column_12"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_12]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_13]"
+                      cachedDataType="decimal"
+                      cachedName="Column_13"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_13]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_14]"
+                      cachedDataType="decimal"
+                      cachedName="Column_14"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_14]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_15]"
+                      cachedDataType="decimal"
+                      cachedName="Column_15"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_15]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_16]"
+                      cachedDataType="decimal"
+                      cachedName="Column_16"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_16]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_17]"
+                      cachedDataType="decimal"
+                      cachedName="Column_17"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_17]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_18]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_18"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_18]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_19]"
+                      cachedDataType="decimal"
+                      cachedName="Column_19"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_19]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_20]"
+                      cachedDataType="decimal"
+                      cachedName="Column_20"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_20]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_21]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_21"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_21]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_22]"
+                      cachedDataType="decimal"
+                      cachedName="Column_22"
+                      cachedScale="2"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_22]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_23]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_23"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_23]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_24]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_24"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_24]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_25]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_25"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_25]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\Sort.Inputs[Sort Input].Columns[Column_26]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Column_26"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_26]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_1]"
+                      name="Column_1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_2]"
+                      name="Column_2"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_3]"
+                      name="Column_3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_4]"
+                      name="Column_4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_4]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_5]"
+                      name="Column_5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_5]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_6]"
+                      name="Column_6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_6]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_7]"
+                      name="Column_7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_7]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_8]"
+                      name="Column_8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_8]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_9]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_9]"
+                      name="Column_9"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_9]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_10]"
+                      name="Column_10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_10]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_11]"
+                      name="Column_11">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_11]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_12]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_12]"
+                      name="Column_12"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_12]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_13]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_13]"
+                      name="Column_13"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_13]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_14]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_14]"
+                      name="Column_14"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_14]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_15]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_15]"
+                      name="Column_15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_15]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_16]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_16]"
+                      name="Column_16"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_16]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_17]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_17]"
+                      name="Column_17"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_17]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_18]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_18]"
+                      name="Column_18">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_18]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_19]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_19]"
+                      name="Column_19"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_19]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_20]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_20]"
+                      name="Column_20"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_20]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_21]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_21]"
+                      name="Column_21">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_21]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_22]"
+                      dataType="decimal"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_22]"
+                      name="Column_22"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_22]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_23]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_23]"
+                      name="Column_23">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_23]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_24]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_24]"
+                      name="Column_24">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_24]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_25]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_25]"
+                      name="Column_25">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_25]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_26]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\Sort.Outputs[Sort Output].Columns[Column_26]"
+                      name="Column_26">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_26]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Export RMS Company Data\TimeScape File Export Body"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape File Export Body Transform"
+              name="TimeScape File Export Body"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  name="UniverseItemDatabaseColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="UniverseItemCodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1</property>
+                <property
+                  dataType="System.Int32"
+                  name="UniverseItemCodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">2</property>
+                <property
+                  dataType="System.Int32"
+                  name="UniverseItem2DatabaseColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">4</property>
+                <property
+                  dataType="System.Int32"
+                  name="UniverseItem2CodeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">5</property>
+                <property
+                  dataType="System.Int32"
+                  name="UniverseItem2CodeTypeColumn"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">6</property>
+                <property
+                  dataType="System.Int32"
+                  description="0 means don't use Header, 1-n means use that row"
+                  name="HeaderRowToUseForColumnNames"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Default scale value for decimal columns"
+                  name="DecimalScaleDefault"
+                  typeConverter="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.FileExportBodyTransformAsynch, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export RMS Company Data\TimeScape File Export Body.Connections[DatabaseItemConnector]"
+                  connectionManagerID="Package.ConnectionManagers[RMS Companies]"
+                  connectionManagerRefId="Package.ConnectionManagers[RMS Companies]"
+                  name="DatabaseItemConnector" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export RMS Company Data\TimeScape File Export Body.Inputs[Export Item Data Input]"
+                  name="Export Item Data Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Inputs[Export Item Data Input].Columns[Item Database]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="Item Database"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Database]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Inputs[Export Item Data Input].Columns[Item Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="Item Code"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Code]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Inputs[Export Item Data Input].Columns[Item Code Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="Item Code Type"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Code Type]" />
+                    <inputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Inputs[Export Item Data Input].Columns[Item Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="Item Category"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Category]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput]"
+                  name="Export Item Data AsychOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_1]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_1]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_1]"
+                      name="Column_1">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_2]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_2]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_2]"
+                      name="Column_2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_2</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_3]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_3]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_3]"
+                      name="Column_3">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_3</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_4]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_4]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_4]"
+                      name="Column_4">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_4</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_5]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_5]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_5]"
+                      name="Column_5">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_5</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_6]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_6]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_6]"
+                      name="Column_6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_6</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_7]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_7]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_7]"
+                      name="Column_7">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_7</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_8]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_8]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_8]"
+                      name="Column_8">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_8</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_9]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_9]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_9]"
+                      name="Column_9"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_9</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_10]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_10]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_10]"
+                      name="Column_10">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_10</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_11]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_11]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_11]"
+                      name="Column_11">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_11</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_12]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_12]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_12]"
+                      name="Column_12"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_12</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_13]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_13]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_13]"
+                      name="Column_13"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_13</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_14]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_14]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_14]"
+                      name="Column_14"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_14</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_15]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_15]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_15]"
+                      name="Column_15"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_15</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_16]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_16]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_16]"
+                      name="Column_16"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_16</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_17]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_17]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_17]"
+                      name="Column_17"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_17</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_18]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_18]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_18]"
+                      name="Column_18">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_18</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_19]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_19]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_19]"
+                      name="Column_19"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_19</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_20]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_20]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_20]"
+                      name="Column_20"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_20</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_21]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_21]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_21]"
+                      name="Column_21">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_21</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_22]"
+                      dataType="decimal"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_22]"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_22]"
+                      name="Column_22"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_22</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_23]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_23]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_23]"
+                      name="Column_23">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_23</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_24]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_24]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_24]"
+                      name="Column_24">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_24</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_25]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_25]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_25]"
+                      name="Column_25">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_25</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_26]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_26]"
+                      length="255"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].Columns[Column_26]"
+                      name="Column_26">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the column at the data source."
+                          name="DataSourceColumnName">Column_26</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_1]"
+                      dataType="str"
+                      length="255"
+                      name="Column_1" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_2]"
+                      dataType="str"
+                      length="255"
+                      name="Column_2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_3]"
+                      dataType="str"
+                      length="255"
+                      name="Column_3" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_4]"
+                      dataType="str"
+                      length="255"
+                      name="Column_4" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_5]"
+                      dataType="str"
+                      length="255"
+                      name="Column_5" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_6]"
+                      dataType="str"
+                      length="255"
+                      name="Column_6" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_7]"
+                      dataType="str"
+                      length="255"
+                      name="Column_7" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_8]"
+                      dataType="str"
+                      length="255"
+                      name="Column_8" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_9]"
+                      dataType="decimal"
+                      name="Column_9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_10]"
+                      dataType="str"
+                      length="255"
+                      name="Column_10" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_11]"
+                      dataType="str"
+                      length="255"
+                      name="Column_11" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_12]"
+                      dataType="decimal"
+                      name="Column_12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_13]"
+                      dataType="decimal"
+                      name="Column_13"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_14]"
+                      dataType="decimal"
+                      name="Column_14"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_15]"
+                      dataType="decimal"
+                      name="Column_15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_16]"
+                      dataType="decimal"
+                      name="Column_16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_17]"
+                      dataType="decimal"
+                      name="Column_17"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_18]"
+                      dataType="str"
+                      length="255"
+                      name="Column_18" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_19]"
+                      dataType="decimal"
+                      name="Column_19"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_20]"
+                      dataType="decimal"
+                      name="Column_20"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_21]"
+                      dataType="str"
+                      length="255"
+                      name="Column_21" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_22]"
+                      dataType="decimal"
+                      name="Column_22"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_23]"
+                      dataType="str"
+                      length="255"
+                      name="Column_23" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_24]"
+                      dataType="str"
+                      length="255"
+                      name="Column_24" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_25]"
+                      dataType="str"
+                      length="255"
+                      name="Column_25" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput].ExternalColumns[Column_26]"
+                      dataType="str"
+                      length="255"
+                      name="Column_26" />
+                  </externalMetadataColumns>
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Export RMS Company Data\TimeScape File Export Universe"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="TimeScape File Export Universe Source"
+              name="TimeScape File Export Universe"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Xenomorph.TimeScape.SSIS.ItemUniverseSourceExportItem, Xenomorph.TimeScape.SSIS, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export RMS Company Data\TimeScape File Export Universe.Connections[DatabaseItemConnector]"
+                  connectionManagerID="Package.ConnectionManagers[RMS Companies]"
+                  connectionManagerRefId="Package.ConnectionManagers[RMS Companies]"
+                  description="File Export Item that defines the export universe"
+                  name="DatabaseItemConnector" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output]"
+                  errorOrTruncationOperation="Could not process the row"
+                  errorRowDisposition="RedirectRow"
+                  name="Item Export Universe Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Database]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Item Database"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Database]"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Database]"
+                      name="Item Database" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Code]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Item Code"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Code]"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Code]"
+                      name="Item Code" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Code Type]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Item Code Type"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Code Type]"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Code Type]"
+                      name="Item Code Type" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Category]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Item Category"
+                      externalMetadataColumnId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Category]"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].Columns[Item Category]"
+                      name="Item Category" />
+                  </outputColumns>
+                  <externalMetadataColumns>
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Database]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="Item Database" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="Item Code" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Code Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="Item Code Type" />
+                    <externalMetadataColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output].ExternalColumns[Item Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="Item Category" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output]"
+                  isErrorOut="true"
+                  name="Item Export Universe Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Database]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Database]"
+                      name="Item Database" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Code]"
+                      name="Item Code" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Code Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Code Type]"
+                      name="Item Code Type" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Item Category]"
+                      name="Item Category" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Error message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[Error message]"
+                      name="Error message" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export RMS Company Data.Paths[Export Item Data AsychOutput]"
+              endId="Package\Export RMS Company Data\Sort.Inputs[Sort Input]"
+              name="Export Item Data AsychOutput"
+              startId="Package\Export RMS Company Data\TimeScape File Export Body.Outputs[Export Item Data AsychOutput]" />
+            <path
+              refId="Package\Export RMS Company Data.Paths[Item Export Universe Output]"
+              endId="Package\Export RMS Company Data\TimeScape File Export Body.Inputs[Export Item Data Input]"
+              name="Item Export Universe Output"
+              startId="Package\Export RMS Company Data\TimeScape File Export Universe.Outputs[Item Export Universe Output]" />
+            <path
+              refId="Package\Export RMS Company Data.Paths[Sort Output]"
+              endId="Package\Export RMS Company Data\Output Company Data.Inputs[Flat File Destination Input]"
+              name="Sort Output"
+              startId="Package\Export RMS Company Data\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Export RMS Company Data"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Export RMS Company Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Export RMS Company Data\TimeScape File Export Body"
+          TopLeft="14,107.5" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Export RMS Company Data\Sort"
+          TopLeft="70,209.5" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Export RMS Company Data\TimeScape File Export Universe"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Export RMS Company Data\Output Company Data"
+          TopLeft="27,311.5" />
+        <EdgeLayout
+          Id="Package\Export RMS Company Data.Paths[Sort Output]"
+          TopLeft="119,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Export RMS Company Data.Paths[Item Export Universe Output]"
+          TopLeft="119,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Export RMS Company Data.Paths[Export Item Data AsychOutput]"
+          TopLeft="119,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
