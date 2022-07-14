@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DatabaseStructure saveDate="06/10/2022 15:23:46">
+  <codeTypes>
+    <codeType>_DRAFT RMS_COMPANY_ID</codeType>
+    <codeType>_DRAFT RMS_SECURITY_ID</codeType>
+    <codeType>CUSIP</codeType>
+    <codeType>FSYM_ID</codeType>
+    <codeType>RMS_COMPANY_ID</codeType>
+    <codeType>RMS_INDICATION_ID</codeType>
+    <codeType>RMS_MILESTONE_ID</codeType>
+    <codeType>RMS_PRODUCT_ID</codeType>
+    <codeType>RMS_SECURITY_ID</codeType>
+    <codeType>SEDOL</codeType>
+    <codeType>TICKER</codeType>
+  </codeTypes>
+  <dataSources>
+    <dataSource>Internal</dataSource>
+  </dataSources>
+  <categories>
+    <Category name="Milestone" description="Milestone">
+      <propertyDefinitions>
+        <PropertyDefinition name="milestone_additional_company_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Addiitional Company IDs" frequency="Day" />
+        <PropertyDefinition name="milestone_company_id" dataType="ItemRef" flags="Historic, StoreChangesOnly" description="Company ID (Primary)" frequency="Day" />
+        <PropertyDefinition name="milestone_company_id_list" dataType="List" flags="Historic, StoreChangesOnly" description="Company IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="milestone_company_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="milestone_date_range" dataType="String" flags="None" description="Date Range" frequency="Day" />
+        <PropertyDefinition name="milestone_description" dataType="String" flags="None" description="Milestone Description" frequency="Day" />
+        <PropertyDefinition name="milestone_event_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Event IDs" frequency="Day" />
+        <PropertyDefinition name="milestone_full_description" dataType="String" flags="None" description="Milestone Full Description (Generated)" frequency="Day" />
+        <PropertyDefinition name="milestone_indication_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Indication IDs" frequency="Day" />
+        <PropertyDefinition name="milestone_indication_ids_list" dataType="List" flags="Historic, StoreChangesOnly" description="Indication IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="indication_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="milestone_major" dataType="Boolean" flags="None" description="Major Milestone?" frequency="Day" />
+        <PropertyDefinition name="milestone_nct" dataType="String" flags="None" description="NCT ID" frequency="Day" />
+        <PropertyDefinition name="milestone_product_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Product IDs" frequency="Day" />
+        <PropertyDefinition name="milestone_product_ids_list" dataType="List" flags="Historic, StoreChangesOnly" description="Product IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="milestone_product_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="Updated" dataType="DateTime" flags="None" description="Last Update" frequency="Day" />
+      </propertyDefinitions>
+    </Category>
+    <Category name="Company" description="Company">
+      <propertyDefinitions>
+        <PropertyDefinition name="company_acorn_id" dataType="String" flags="Historic, StoreChangesOnly" description="ACORN ID" frequency="Day" />
+        <PropertyDefinition name="company_acquired_by_id" dataType="ItemRef" flags="Historic, StoreChangesOnly" description="Company Acquired ID" frequency="Day" />
+        <PropertyDefinition name="company_active" dataType="Boolean" flags="Historic, StoreChangesOnly" description="Active Company?" frequency="Day" />
+        <PropertyDefinition name="company_burn" dataType="Double" flags="Historic, StoreChangesOnly" description="Burn Rate" frequency="Day" />
+        <PropertyDefinition name="company_cash" dataType="Double" flags="Historic, StoreChangesOnly" description="Cash" frequency="Day" />
+        <PropertyDefinition name="company_category" dataType="String" flags="None" description="Category" frequency="Day" />
+        <PropertyDefinition name="company_debt" dataType="Double" flags="Historic, StoreChangesOnly" description="Debt" frequency="Day" />
+        <PropertyDefinition name="company_deleted" dataType="Boolean" flags="Historic, StoreChangesOnly" description="Company Deleted?" frequency="Day" />
+        <PropertyDefinition name="company_duns_id" dataType="String" flags="Historic, StoreChangesOnly" description="DUNS ID" frequency="Day" />
+        <PropertyDefinition name="company_ev" dataType="Double" flags="Historic, StoreChangesOnly" description="Enterprise Value" frequency="Day" />
+        <PropertyDefinition name="company_fsym_id" dataType="String" flags="Historic, StoreChangesOnly" description="FYSM Identifier (FactSet)" frequency="Day" />
+        <PropertyDefinition name="company_isin_id" dataType="String" flags="Historic, StoreChangesOnly" description="ISIN ID" frequency="Day" />
+        <PropertyDefinition name="company_last_updated" dataType="DateTime" flags="None" description="Company Last Updated" frequency="Day" />
+        <PropertyDefinition name="company_market_cap" dataType="Double" flags="Historic, StoreChangesOnly" description="Market Cap" frequency="Day" />
+        <PropertyDefinition name="company_market_cap_postmarket" dataType="Double" flags="Historic, StoreChangesOnly" description="Market Cap (Post-Market)" frequency="Day" />
+        <PropertyDefinition name="company_market_cap_premarket" dataType="Double" flags="Historic, StoreChangesOnly" description="Market Cap (Pre-Market)" frequency="Day" />
+        <PropertyDefinition name="company_milestone_list" dataType="List" flags="Historic, StoreChangesOnly" description="Company Milestones (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="company_milestone_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="company_name" dataType="String" flags="Historic, StoreChangesOnly" description="Company Name" frequency="Day" />
+        <PropertyDefinition name="company_notes_count" dataType="Int32" flags="Historic, StoreChangesOnly" description="Company Notes Count" frequency="Day" />
+        <PropertyDefinition name="company_private" dataType="Boolean" flags="Historic, StoreChangesOnly" description="Private Company?" frequency="Day" />
+        <PropertyDefinition name="company_product_list" dataType="List" flags="Historic, StoreChangesOnly" description="Products (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="product_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="company_revenue" dataType="Double" flags="Historic, StoreChangesOnly" description="Revenue" frequency="Day" />
+        <PropertyDefinition name="company_sec_id" dataType="String" flags="Historic, StoreChangesOnly" description="Security ID" frequency="Day" />
+        <PropertyDefinition name="company_sec_id_cast" dataType="Formula" flags="HasDefaultValue" description="New Property" frequency="Day">
+          <DefaultValue type="Xenomorph.Generic.Formula, Xenomorph.Generic, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e">
+            <Xenomorph.Generic.Formula RowColumnFormat="A1" CellDefinitionsRows="1" CellDefinitionsColumns="1">
+              <NamedRanges>
+                <CellNameDefinition Name="FormulaResult">
+                  <Range Top="0" Left="0" Bottom="0" Right="0" />
+                </CellNameDefinition>
+              </NamedRanges>
+              <Cells>
+                <CellDefinition d9p1:type="FormulaCellDefinition" CalculationEnabled="true" DataVisible="true" RowHidden="false" EndOfLine="false" xmlns:d9p1="http://www.w3.org/2001/XMLSchema-instance">
+                  <Range Top="0" Left="0" Bottom="0" Right="0" />
+                  <Value>IF(company_sec_id.LastValue != NULL, TOLIST(CSTR(CLNG(company_sec_id))).DateValue,NULL)</Value>
+                </CellDefinition>
+              </Cells>
+            </Xenomorph.Generic.Formula>
+          </DefaultValue>
+        </PropertyDefinition>
+        <PropertyDefinition name="company_sec_id_list" dataType="List" flags="Historic, StoreChangesOnly" description="Security ID (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="System.String" header="SEC ID" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="company_sec_id_regex" dataType="Formula" flags="HasDefaultValue" description="New Property" frequency="Day">
+          <DefaultValue type="Xenomorph.Generic.Formula, Xenomorph.Generic, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e">
+            <Xenomorph.Generic.Formula RowColumnFormat="A1" CellDefinitionsRows="1" CellDefinitionsColumns="1">
+              <NamedRanges>
+                <CellNameDefinition Name="FormulaResult">
+                  <Range Top="0" Left="0" Bottom="0" Right="0" />
+                </CellNameDefinition>
+              </NamedRanges>
+              <Cells>
+                <CellDefinition d9p1:type="FormulaCellDefinition" CalculationEnabled="true" DataVisible="true" RowHidden="false" EndOfLine="false" xmlns:d9p1="http://www.w3.org/2001/XMLSchema-instance">
+                  <Range Top="0" Left="0" Bottom="0" Right="0" />
+                  <Value>IF(company_sec_id.LastValue != NULL, REGEXMATCH(company_sec_id.LastValue,"[^0].*"), company_sec_id.LastValue)</Value>
+                </CellDefinition>
+              </Cells>
+            </Xenomorph.Generic.Formula>
+          </DefaultValue>
+        </PropertyDefinition>
+        <PropertyDefinition name="company_shares" dataType="Double" flags="Historic, StoreChangesOnly" description="Shares Outstanding" frequency="Day" />
+        <PropertyDefinition name="company_synonyms" dataType="String" flags="Historic, StoreChangesOnly" description="Synonyms" frequency="Day" />
+        <PropertyDefinition name="company_synonyms_list" dataType="List" flags="Historic, StoreChangesOnly" description="Synonyms (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="System.String" header="synonym" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="company_ticker" dataType="String" flags="Historic, StoreChangesOnly" description="Company Ticker" frequency="Day" />
+        <PropertyDefinition name="company_years_of_cash" dataType="Double" flags="Historic, StoreChangesOnly" description="Year(s) of Cash" frequency="Day" />
+        <PropertyDefinition name="position_type" dataType="String" flags="Historic, StoreChangesOnly" description="Company Position Type (Long/Short)" frequency="Day" />
+        <PropertyDefinition name="security_id" dataType="ItemRef" flags="None" description="Security ID" frequency="Day" />
+        <PropertyDefinition name="Ticker" dataType="Formula" flags="HasDefaultValue" description="New Property" frequency="Day">
+          <DefaultValue type="Xenomorph.Generic.Formula, Xenomorph.Generic, Version=5.0.4000.0, Culture=neutral, PublicKeyToken=2adfa95c2785233e">
+            <Xenomorph.Generic.Formula RowColumnFormat="A1" CellDefinitionsRows="1" CellDefinitionsColumns="1">
+              <NamedRanges>
+                <CellNameDefinition Name="FormulaResult">
+                  <Range Top="0" Left="0" Bottom="0" Right="0" />
+                </CellNameDefinition>
+              </NamedRanges>
+              <Cells>
+                <CellDefinition d9p1:type="FormulaCellDefinition" CalculationEnabled="true" DataVisible="true" RowHidden="false" EndOfLine="false" xmlns:d9p1="http://www.w3.org/2001/XMLSchema-instance">
+                  <Range Top="0" Left="0" Bottom="0" Right="0" />
+                  <Value>Security_id.security_ticker.LastValue</Value>
+                </CellDefinition>
+              </Cells>
+            </Xenomorph.Generic.Formula>
+          </DefaultValue>
+        </PropertyDefinition>
+        <PropertyDefinition name="Updated" dataType="DateTime" flags="None" description="Last Update" frequency="Day" />
+      </propertyDefinitions>
+    </Category>
+    <Category name="Security" description="Security">
+      <propertyDefinitions>
+        <PropertyDefinition name="close_price" dataType="Double" flags="Historic" description="Close Price" frequency="Day">
+          <Constraint testFunction="GreaterThan" testValue1="0" testValue2="0">
+            <allowedValues>
+              <ArrayOfDouble d8p1:nil="true" xmlns:d8p1="http://www.w3.org/2001/XMLSchema-instance" />
+            </allowedValues>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="company_burn" dataType="Double" flags="Historic, StoreChangesOnly" description="Burn Rate" frequency="Day" />
+        <PropertyDefinition name="company_cash" dataType="Double" flags="Historic, StoreChangesOnly" description="Cash" frequency="Day" />
+        <PropertyDefinition name="company_debt" dataType="Double" flags="Historic, StoreChangesOnly" description="Debt" frequency="Day" />
+        <PropertyDefinition name="company_ev" dataType="Double" flags="Historic, StoreChangesOnly" description="Enterprise Value" frequency="Day" />
+        <PropertyDefinition name="company_fsym_id" dataType="String" flags="Historic, StoreChangesOnly" description="FYSM Identifier (FactSet)" frequency="Day" />
+        <PropertyDefinition name="company_id" dataType="ItemRef" flags="None" description="Company ID" frequency="Day" />
+        <PropertyDefinition name="company_market_cap" dataType="Double" flags="Historic, StoreChangesOnly" description="Market Cap" frequency="Day" />
+        <PropertyDefinition name="company_market_cap_postmarket" dataType="Double" flags="Historic, StoreChangesOnly" description="Market Cap (Post-Market)" frequency="Day" />
+        <PropertyDefinition name="company_market_cap_premarket" dataType="Double" flags="Historic, StoreChangesOnly" description="Market Cap (Pre-Market)" frequency="Day" />
+        <PropertyDefinition name="company_revenue" dataType="Double" flags="Historic, StoreChangesOnly" description="Revenue" frequency="Day" />
+        <PropertyDefinition name="company_shares" dataType="Double" flags="Historic, StoreChangesOnly" description="Shares Outstanding" frequency="Day" />
+        <PropertyDefinition name="position_type" dataType="String" flags="Historic, StoreChangesOnly" description="Company Position Type (Long/Short)" frequency="Day" />
+        <PropertyDefinition name="ql_google" dataType="String" flags="Historic, StoreChangesOnly" description="Google Finance URL" frequency="Day" />
+        <PropertyDefinition name="ql_yahoo" dataType="String" flags="Historic, StoreChangesOnly" description="Yahoo Finance URL" frequency="Day" />
+        <PropertyDefinition name="security_currency" dataType="String" flags="None" description="Currency" frequency="Day" />
+        <PropertyDefinition name="security_cusip" dataType="String" flags="Historic, StoreChangesOnly" description="CUSIP Number" frequency="Day" />
+        <PropertyDefinition name="security_deleted" dataType="Boolean" flags="Historic, StoreChangesOnly" description="Security Deleted?" frequency="Day" />
+        <PropertyDefinition name="security_exchange" dataType="String" flags="Historic, StoreChangesOnly" description="Exchange IDs" frequency="Day" />
+        <PropertyDefinition name="security_exchange_list" dataType="List" flags="Historic, StoreChangesOnly" description="Exchange IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="System.String" header="security_exchange" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="security_fair_value_target" dataType="Double" flags="Historic, StoreChangesOnly" description="Fair Value Target" frequency="Day" />
+        <PropertyDefinition name="security_last_price" dataType="Double" flags="Historic" description="Last Price" frequency="Day" />
+        <PropertyDefinition name="security_long_target" dataType="Double" flags="Historic, StoreChangesOnly" description="Long Target" frequency="Day" />
+        <PropertyDefinition name="security_name" dataType="String" flags="Historic, StoreChangesOnly" description="Security Name" frequency="Day" />
+        <PropertyDefinition name="security_sedol" dataType="String" flags="Historic, StoreChangesOnly" description="SEDOL Number" frequency="Day" />
+        <PropertyDefinition name="security_short_target" dataType="Double" flags="Historic, StoreChangesOnly" description="Short Target" frequency="Day" />
+        <PropertyDefinition name="security_ticker" dataType="String" flags="Historic, StoreChangesOnly" description="Ticker" frequency="Day" />
+        <PropertyDefinition name="Updated" dataType="DateTime" flags="None" description="Last Update" frequency="Day" />
+      </propertyDefinitions>
+    </Category>
+    <Category name="Product" description="Product">
+      <propertyDefinitions>
+        <PropertyDefinition name="product_class" dataType="String" flags="None" description="Class" frequency="Day" />
+        <PropertyDefinition name="product_company_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Company IDs" frequency="Day" />
+        <PropertyDefinition name="product_company_list" dataType="List" flags="Historic, StoreChangesOnly" description="Company IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="company_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="product_dosing" dataType="String" flags="None" description="Dosing" frequency="Day" />
+        <PropertyDefinition name="product_mechanism_of_action" dataType="String" flags="None" description="Mechanism of Action" frequency="Day" />
+        <PropertyDefinition name="product_milestone_list" dataType="List" flags="Historic, StoreChangesOnly" description="Milestone IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="product_milestone_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="product_name" dataType="String" flags="None" description="Product Name" frequency="Day" />
+        <PropertyDefinition name="product_phase" dataType="String" flags="Historic, StoreChangesOnly" description="Phase" frequency="Day" />
+        <PropertyDefinition name="product_route_of_delivery" dataType="String" flags="None" description="Route of Delivery" frequency="Day" />
+        <PropertyDefinition name="product_synonyms" dataType="String" flags="Historic, StoreChangesOnly" description="Synonyms" frequency="Day" />
+        <PropertyDefinition name="product_synonyms_list" dataType="List" flags="Historic, StoreChangesOnly" description="Synonyms (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="System.String" header="synonym" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="product_target" dataType="String" flags="None" description="Target" frequency="Day" />
+        <PropertyDefinition name="Updated" dataType="DateTime" flags="None" description="Last Update" frequency="Day" />
+      </propertyDefinitions>
+    </Category>
+    <Category name="Indication" description="Indication">
+      <propertyDefinitions>
+        <PropertyDefinition name="indication_child_relationship_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Child Relationship IDs" frequency="Day" />
+        <PropertyDefinition name="indication_classification" dataType="String" flags="None" description="Classification" frequency="Day" />
+        <PropertyDefinition name="indication_classification_id" dataType="Int16" flags="None" description="Classification ID" frequency="Day" />
+        <PropertyDefinition name="indication_name" dataType="String" flags="None" description="Indication Name" frequency="Day" />
+        <PropertyDefinition name="indication_product_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Indication Product IDs" frequency="Day" />
+        <PropertyDefinition name="indication_product_ids_list" dataType="List" flags="Historic, StoreChangesOnly" description="Product IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="Xenomorph.Generic.ItemRef" header="product_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="indication_synonym_ids" dataType="String" flags="Historic, StoreChangesOnly" description="Synonym IDs" frequency="Day" />
+        <PropertyDefinition name="indication_synonym_ids_list" dataType="List" flags="Historic, StoreChangesOnly" description="Synonym IDs (List)" frequency="Day">
+          <Constraint flags="FixedColumnCount, FixedColumnTypes" rows="0" columns="1">
+            <columnTypes>
+              <ArrayOfColumnDefinition>
+                <ColumnDefinition type="System.String" header="indication_synonym_id" />
+              </ArrayOfColumnDefinition>
+            </columnTypes>
+          </Constraint>
+        </PropertyDefinition>
+        <PropertyDefinition name="Updated" dataType="DateTime" flags="None" description="Last Update" frequency="Day" />
+      </propertyDefinitions>
+    </Category>
+  </categories>
+</DatabaseStructure>

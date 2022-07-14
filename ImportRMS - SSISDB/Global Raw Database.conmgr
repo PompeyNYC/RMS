@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Global Raw Database"
+  DTS:DTSID="{F1478C8A-4B9E-42EF-B758-9D8D8F6B6E35}"
+  DTS:CreationName="TimeScape Database">
+  <DTS:PropertyExpression
+    DTS:Name="DatabaseName">@[$Project::TimeScapeRawDatabase]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::Server]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <InnerObject>
+      <DatabaseName
+        Type="8"
+        Value="RMS" />
+      <ServerName
+        Type="8"
+        Value="XENODEMOUS27" />
+      <TargetServerVersion
+        Type="3"
+        Value="150" />
+    </InnerObject>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
